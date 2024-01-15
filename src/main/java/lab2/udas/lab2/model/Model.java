@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+
+@Component
 public class Model {
     HashMap<Integer, Profile> profiles;
     HashMap<Integer, Posting> postings;
@@ -56,5 +57,11 @@ and adds the posting to the postings collection,
 
     public List<Posting> getPostings() {
         return new ArrayList<>(postings.values());
+    }
+
+    public Profile addProfile(Profile profile) {
+        profile.setProfileId(nextProfileId++);
+        profiles.put(profile.getProfileId(), profile);
+        return profile;
     }
 }
